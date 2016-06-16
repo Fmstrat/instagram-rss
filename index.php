@@ -2,6 +2,9 @@
 
 use rdx\http\HTTP;
 
+if ($_GET['code'] != "afdFjieaafef39aavm39wEfrkf3agra32g0GDF")
+	exit;
+
 header('Content-type: text/plain; charset=utf-8');
 
 require 'vendor/autoload.php';
@@ -35,28 +38,28 @@ $media = $profile['media']['nodes'];
 // 3. Print RSS
 header('Content-type: text/xml; charset=utf-8');
 echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
-
 ?>
 <rss version="2.0">
 	<channel>
-		<title>@<?= html($username) ?></title>
+		<title>+ @<?= html($username) ?></title>
 		<link>https://www.instagram.com/<?= html($username) ?>/</link>
 		<description>@<?= html($username) ?></description>
 		<? foreach ($media as $node):
 			$link = $node['display_src'];
+			$fulllink = "https://www.instagram.com/p/" . $node['code'];
 			$thumb = $node['thumbnail_src'];
-			$title = trim(trim(@$node['caption']) . " \n\n https://www.instagram.com/p/" . $node['code'] . '/', ' -');
+			$title = trim(trim(@$node['caption']));
 			?>
 			<item>
-				<title><?= html($title) ?></title>
-				<link><?= html($link) ?></link>
+				<title><?= html($username) ?></title>
+				<link><?= html($fulllink) ?></link>
 				<image>
 					<url><?= html($thumb) ?></url>
 					<link><?= html($link) ?></link>
 					<title><?= html($title) ?></title>
 				</image>
 				<guid isPermaLink="true">https://www.instagram.com/p/<?= html($node['code']) ?>/</guid>
-				<description><?= html($title) ?></description>
+				<description><![CDATA[<?= html($title) ?><br><img src='<?= html($link) ?>'>]]></description>
 				<pubDate><?= date('r', $node['date']) ?></pubDate>
 				<author><?= html($username) ?>@instagram.com</author>
 			</item>

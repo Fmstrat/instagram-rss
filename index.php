@@ -59,7 +59,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 					<title><?= html($title) ?></title>
 				</image>
 				<guid isPermaLink="true">https://www.instagram.com/p/<?= html($node['code']) ?>/</guid>
-				<description><![CDATA[<?= html($title) ?><br><img src='<?= html($link) ?>'>]]></description>
+				<description><![CDATA[<?= html($title) ?><br><a href='<?= html($link) ?>'><img src='<?= html($link) ?>'></a>]]></description>
 				<pubDate><?= date('r', $node['date']) ?></pubDate>
 				<author><?= html($username) ?>@instagram.com</author>
 			</item>

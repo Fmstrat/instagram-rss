@@ -49,17 +49,29 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 			$fulllink = "https://www.instagram.com/p/" . $node['code'];
 			$thumb = $node['thumbnail_src'];
 			$title = trim(trim(@$node['caption']));
+			$typename = $node['__typename'];
+			$posttitle = $username;
+			if ($typename == "GraphVideo")
+				$posttitle = "VIDEO - ".$posttitle;
+			if ($typename == "GraphSidecar")
+				$posttitle = "MULTI - ".$posttitle;
 			?>
 			<item>
-				<title><?= html($username) ?></title>
-				<link><?= html($fulllink) ?></link>
+				<title><?= html($posttitle) ?></title>
 				<image>
 					<url><?= html($thumb) ?></url>
 					<link><?= html($link) ?></link>
 					<title><?= html($title) ?></title>
 				</image>
+				<link><?= html($fulllink) ?></link>
 				<guid isPermaLink="true">https://www.instagram.com/p/<?= html($node['code']) ?>/</guid>
-				<description><![CDATA[<?= html($title) ?><br><a href='<?= html($link) ?>'><img src='<?= html($link) ?>'></a>]]></description>
+				<?php if ($typename == "GraphVideo") { ?>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<?php } elseif ($typename == "GraphSidecar") { ?>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<?php } else { ?>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<?php } ?>
 				<pubDate><?= date('r', $node['date']) ?></pubDate>
 				<author><?= html($username) ?>@instagram.com</author>
 			</item>

@@ -68,7 +68,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 				<?php if ($typename == "GraphVideo") { ?>
 				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } elseif ($typename == "GraphSidecar") { ?>
-				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/multi.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } else { ?>
 				<description><![CDATA[<a href='<?= html($link) ?>'><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } ?>

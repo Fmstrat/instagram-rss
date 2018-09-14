@@ -55,7 +55,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 				$posttitle = "VIDEO - ".$posttitle;
 			if ($typename == "GraphSidecar")
 				$posttitle = "MULTI - ".$posttitle;
-			$postUrl = "https://www.instagram.com/p/" . $node['node']['shortcode'] . "/";
+			$postUrl = "https://www.instagram.com/p/" . $node['node']['shortcode'];
 			$utc = $node['node']['taken_at_timestamp'];
 			$link = $node['node']['display_url'];
 			$thumb = $node['node']['thumbnail_src'];

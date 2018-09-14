@@ -48,9 +48,8 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 		<link>https://www.instagram.com/<?= html($username) ?>/</link>
 		<description>@<?= html($username) ?></description>
 		<? foreach ($media as $node):
-			$fulllink = "https://www.instagram.com/p/" . $node['code'];
 			$title = trim(@$node['node']['edge_media_to_caption']['edges'][0]['node']['text']);
-			$typename = $node['__typename'];
+			$typename = $node['node']['__typename'];
 			$posttitle = $username;
 			if ($typename == "GraphVideo")
 				$posttitle = "VIDEO - ".$posttitle;
@@ -68,7 +67,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 					<link><?= html($link) ?></link>
 					<title><?= html($title) ?></title>
 				</image>
-				<link><?= html($fulllink) ?></link>
+				<link><?= html($postUrl) ?></link>
 				<guid isPermaLink="true"><?= html($postUrl) ?>/</guid>
 				<?php if ($typename == "GraphVideo") { ?>
 				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>

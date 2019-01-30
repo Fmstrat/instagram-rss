@@ -2,7 +2,9 @@
 
 use rdx\http\HTTP;
 
-if ($_GET['code'] != "afdFjieaafef39aavm39wEfrkf3agra32g0GDF")
+require "config.php";
+
+if ($_GET['code'] != $code)
 	exit;
 
 header('Content-type: text/plain; charset=utf-8');
@@ -70,9 +72,9 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 				<link><?= html($postUrl) ?></link>
 				<guid isPermaLink="true"><?= html($postUrl) ?>/</guid>
 				<?php if ($typename == "GraphVideo") { ?>
-				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/video.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/image.php?text=VIDEO&code=afdFjieaafef39aavm39wEfrkf3agra32g0GDF&url=<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } elseif ($typename == "GraphSidecar") { ?>
-				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/multi.png'><br><br><br><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
+				<description><![CDATA[<a href='<?= html($link) ?>'><img src='https://nowsci.com/instagram-rss/image.php?text=MUTLI&code=afdFjieaafef39aavm39wEfrkf3agra32g0GDF&url=<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } else { ?>
 				<description><![CDATA[<a href='<?= html($link) ?>'><img src='<?= html($link) ?>'></a><br><?= html($title) ?>]]></description>
 				<?php } ?>

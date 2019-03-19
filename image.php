@@ -19,7 +19,23 @@
 	header('Content-type: image/jpeg');
 
 	// Create Image From Existing File
-	$jpg_image = imagecreatefromjpeg($_GET["url"]);
+	$header=array(
+		'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12',
+		'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Language: en-us,en;q=0.5',
+		'Accept-Encoding: gzip,deflate',
+		'Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+		'Keep-Alive: 115',
+		'Connection: keep-alive',
+	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $_GET["url"]);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+	curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	$jpg_image = imagecreatefromstring($data);
 	$w = imagesx($jpg_image);
 	$h = imagesy($jpg_image);
 
